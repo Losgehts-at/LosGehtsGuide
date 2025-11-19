@@ -35,12 +35,14 @@ GET /oauth/authorize
 
 ### Query Parameters
 
-| Parameter | Required | Description                                                                      |
-| --------- | -------- | -------------------------------------------------------------------------------- |
-| client_id | Yes      | Your application's client ID.                                                    |
-| state     | Yes      | Unique string (session ID, affiliate tag). Returned in callback to prevent CSRF. |
-| scope     | Yes      | Comma-separated list of requested scopes. Available scopes: signup, kyc, sof     |
-| locale    | No       | Country code for localization (e.g., de, at, us)                                 |
+| Parameter  | Required | Description |
+|------------|----------|-------------|
+| client_id  | Yes      | The unique client identifier of your application. |
+| state      | Yes      | A unique string used to maintain state between the request and callback (e.g., session ID, affiliate tag, or encrypted UserID). Returned in the callback to help prevent CSRF attacks. |
+| scope      | Yes      | A comma-separated list of scopes defining the permissions being requested. Supported scopes include: `signup`, `kyc`, and `sof`. |
+| locale     | No       | A two-letter country/language code used for localization (e.g., `de`, `at`, `us`). Primarily determines the UI language. |
+| cc         | No       | Enforces a specific country context in a multi-country setup (e.g., `AT`). If not provided, the country will be auto-detected based on the user's geolocation. |
+
 
 ### Example
 
@@ -187,105 +189,34 @@ The verification provider IDs correspond to the following services:
 
 The following table shows all possible fields that may be returned in the userinfo response:
 
-| Field                                    | Type    | Description                                       |
-| ---------------------------------------- | ------- | ------------------------------------------------- |
-| VerificationId                           | Integer | Primary identifier for the verification record    |
-| CreatedAt                                | Text    | Timestamp when the record was created             |
-| ModifiedAt                               | Text    | Timestamp when the record was last modified       |
-| ClientId                                 | Integer | Your application's client ID                      |
-| VerificationStatusId                     | Integer | Status of the verification process                |
-| VerifiedAt                               | Text    | Timestamp when verification was completed         |
-| Email                                    | Text    | User's email address                              |
-| EmailVerificationProviderId              | Integer | ID of email verification provider                 |
-| EmailPassiveVerificationProviderId       | Integer | ID of passive email verification provider         |
-| EmailVerified                            | Boolean | Whether email has been verified                   |
-| EmailConfirmed                           | Boolean | Whether email has been confirmed                  |
-| FirstName                                | Text    | User's first name                                 |
-| FirstNameVerificationProviderId          | Integer | ID of first name verification provider            |
-| FirstNamePassiveVerificationProviderId   | Integer | ID of passive first name verification provider    |
-| FirstNameVerified                        | Boolean | Whether first name has been verified              |
-| LastName                                 | Text    | User's last name                                  |
-| LastNameVerificationProviderId           | Integer | ID of last name verification provider             |
-| LastNamePassiveVerificationProviderId    | Integer | ID of passive last name verification provider     |
-| LastNameVerified                         | Boolean | Whether last name has been verified               |
-| FullName                                 | Text    | User's full name                                  |
-| FullNameVerificationProviderId           | Integer | ID of full name verification provider             |
-| FullNamePassiveVerificationProviderId    | Integer | ID of passive full name verification provider     |
-| FullNameVerified                         | Boolean | Whether full name has been verified               |
-| MaidenName                               | Text    | User's maiden name                                |
-| MaidenNameVerificationProviderId         | Integer | ID of maiden name verification provider           |
-| MaidenNamePassiveVerificationProviderId  | Integer | ID of passive maiden name verification provider   |
-| MaidenNameVerified                       | Boolean | Whether maiden name has been verified             |
-| DateOfBirth                              | Text    | User's date of birth                              |
-| DateOfBirthVerificationProviderId        | Integer | ID of date of birth verification provider         |
-| DateOfBirthPassiveVerificationProviderId | Integer | ID of passive date of birth verification provider |
-| DateOfBirthVerified                      | Boolean | Whether date of birth has been verified           |
-| BirthPlace                               | Text    | User's place of birth                             |
-| BirthPlaceVerificationProviderId         | Integer | ID of birth place verification provider           |
-| BirthPlacePassiveVerificationProviderId  | Integer | ID of passive birth place verification provider   |
-| BirthPlaceVerified                       | Boolean | Whether birth place has been verified             |
-| Gender                                   | Text    | User's gender                                     |
-| GenderVerificationProviderId             | Integer | ID of gender verification provider                |
-| GenderPassiveVerificationProviderId      | Integer | ID of passive gender verification provider        |
-| GenderVerified                           | Boolean | Whether gender has been verified                  |
-| Nationality                              | Text    | User's nationality                                |
-| NationalityVerificationProviderId        | Integer | ID of nationality verification provider           |
-| NationalityPassiveVerificationProviderId | Integer | ID of passive nationality verification provider   |
-| NationalityVerified                      | Boolean | Whether nationality has been verified             |
-| Country                                  | Text    | User's country                                    |
-| CountryVerificationProviderId            | Integer | ID of country verification provider               |
-| CountryPassiveVerificationProviderId     | Integer | ID of passive country verification provider       |
-| CountryVerified                          | Boolean | Whether country has been verified                 |
-| ZipCode                                  | Text    | User's postal/zip code                            |
-| ZipCodeVerificationProviderId            | Integer | ID of zip code verification provider              |
-| ZipCodePassiveVerificationProviderId     | Integer | ID of passive zip code verification provider      |
-| ZipCodeVerified                          | Boolean | Whether zip code has been verified                |
-| Town                                     | Text    | User's town/city                                  |
-| TownVerificationProviderId               | Integer | ID of town verification provider                  |
-| TownPassiveVerificationProviderId        | Integer | ID of passive town verification provider          |
-| TownVerified                             | Boolean | Whether town has been verified                    |
-| Street                                   | Text    | User's street name                                |
-| StreetVerificationProviderId             | Integer | ID of street verification provider                |
-| StreetPassiveVerificationProviderId      | Integer | ID of passive street verification provider        |
-| StreetVerified                           | Boolean | Whether street has been verified                  |
-| HouseNumber                              | Text    | User's house number                               |
-| HouseNumberVerificationProviderId        | Integer | ID of house number verification provider          |
-| HouseNumberPassiveVerificationProviderId | Integer | ID of passive house number verification provider  |
-| HouseNumberVerified                      | Boolean | Whether house number has been verified            |
-| PhoneNumber                              | Text    | User's phone number                               |
-| PhoneNumberInternational                 | Text    | Phone number in international format              |
-| PhoneNumberNational                      | Text    | Phone number in national format                   |
-| PhoneCountryCode                         | Text    | Country code for phone number                     |
-| PhoneCountryPrefix                       | Text    | Country prefix for phone number                   |
-| PhoneNumberVerificationProviderId        | Integer | ID of phone number verification provider          |
-| PhoneNumberPassiveVerificationProviderId | Integer | ID of passive phone number verification provider  |
-| PhoneNumberVerified                      | Boolean | Whether phone number has been verified            |
-| PhoneNumberConfirmed                     | Boolean | Whether phone number has been confirmed           |
-| AddressReferenceId                       | Text    | Reference ID for address                          |
-| Region                                   | Text    | User's region                                     |
-| RegionCode                               | Text    | Region code                                       |
-| Password                                 | Text    | User's password (encrypted)                       |
-| InvitedAt                                | Text    | Timestamp when user was invited                   |
-| Lang                                     | Text    | User's language preference                        |
-| OAuthState                               | Text    | OAuth state parameter                             |
-| OAuthScope                               | Text    | OAuth scope requested                             |
-| OAuthCode                                | Text    | OAuth authorization code                          |
-| CfIpCountry                              | Text    | Cloudflare IP country                             |
-| CfRay                                    | Text    | Cloudflare Ray ID                                 |
-| CfConnectingIp                           | Text    | Cloudflare connecting IP                          |
-| CfVisitor                                | Text    | Cloudflare visitor data                           |
-| CfContinent                              | Text    | Cloudflare continent                              |
-| CfCountry                                | Text    | Cloudflare country                                |
-| CfRegion                                 | Text    | Cloudflare region                                 |
-| CfRegionCode                             | Text    | Cloudflare region code                            |
-| CfCity                                   | Text    | Cloudflare city                                   |
-| CfPostalCode                             | Text    | Cloudflare postal code                            |
-| CfTimezone                               | Text    | Cloudflare timezone                               |
-| CfLatitude                               | Text    | Cloudflare latitude                               |
-| CfLongitude                              | Text    | Cloudflare longitude                              |
-| UserAgent                                | Text    | User's browser user agent                         |
-| AcceptLanguage                           | Text    | User's accepted languages                         |
-| Referer                                  | Text    | HTTP referer header                               |
+| Field                 | Type    | Description                                  |
+|-----------------------|---------|----------------------------------------------|
+| VerificationId        | Integer | Primary identifier for the verification record |
+| Email                 | Text    | User's email address                          |
+| EmailConfirmed        | Boolean | Whether email has been confirmed             |
+| VerificationStatusId  | Integer | Status of the verification process           |
+| Password              | Text    | User's password (encrypted)                  |
+| FirstName             | Text    | User's first name                             |
+| FirstNameVerified     | Boolean | Whether first name has been verified         |
+| LastName              | Text    | User's last name                              |
+| LastNameVerified      | Boolean | Whether last name has been verified          |
+| DateOfBirth           | Text    | User's date of birth                          |
+| DateOfBirthVerified   | Boolean | Whether date of birth has been verified      |
+| Gender                | Text    | User's gender                                 |
+| GenderVerified        | Boolean | Whether gender has been verified             |
+| Nationality           | Text    | User's nationality                            |
+| NationalityVerified   | Boolean | Whether nationality has been verified        |
+| ZipCode               | Text    | User's postal/zip code                        |
+| ZipCodeVerified       | Boolean | Whether zip code has been verified           |
+| Town                  | Text    | User's town/city                              |
+| TownVerified          | Boolean | Whether town has been verified               |
+| Street                | Text    | User's street name                            |
+| StreetVerified        | Boolean | Whether street has been verified             |
+| Country               | Text    | User's country                                |
+| CountryVerified       | Boolean | Whether country has been verified            |
+| PhoneNumber           | Text    | User's phone number                           |
+| PhoneNumberVerified   | Boolean | Whether phone number has been verified       |
+| Lang                  | Text    | User's language preference                    |
 
 **Notes:**
 
