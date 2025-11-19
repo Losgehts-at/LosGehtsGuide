@@ -167,24 +167,6 @@ The `verificationStatus` field can contain the following values:
 | 2         | Passive | Passive verification has been completed               |
 | 3         | Failed  | Verification process has failed                       |
 
-### Verification Providers
-
-The verification provider IDs correspond to the following services:
-
-| Provider ID | Name                    | Description    |
-|-------------|-------------------------|----------------|
-| 0           | AT - Bank Ident         |                |
-| 1           | AT - ID Austria         |                |
-| 2           | Bank #1                 |                |
-| 3           | Bank #2                 |                |
-| 4           | Open Banking #1         |                |
-| 5           | Open Banking #2         |                |
-| 6           | AT - Company Register   |                |
-| 7           | EU - Company Register   |                |
-| 8           | SMS Verification        | OTP confirmed  |
-| 9           | N/A                     |                |
-| 10          | DE - Carrier Match      |                |
-
 ### Complete Response Fields Reference
 
 The following table shows all possible fields that may be returned in the userinfo response:
