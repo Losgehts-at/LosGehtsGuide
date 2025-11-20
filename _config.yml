@@ -1,3 +1,7 @@
 # _config.yml
 title: losgehts.at API Documentation
-theme: jekyll-theme-architect
+theme: jekyll-theme-cayman
+
+# Disable GitHub links / buttons
+github_repo: false
+show_github_link: false
