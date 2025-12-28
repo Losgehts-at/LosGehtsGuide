@@ -219,7 +219,6 @@ The following table shows all possible fields that may be returned in the userin
 | AcceptedPrivacy          | Boolean | Whether user accepted privacy policy           |                                            |
 | AcceptedTerms            | Boolean | Whether user accepted terms                    |                                            |
 | AuditLog                 | Array   |   List of audit events                         | See below                                  |
----
 
 ## AuditLog
 
@@ -256,27 +255,7 @@ When `AuditData` contains JSON, clients must **parse the string as JSON**.
 
 ### Example
 
-```json
-"AuditLog": [
-  {
-    "AuditLogId": 50,
-    "CreatedAt": "2025-12-28T21:13:06.452Z",
-    "VerificationId": 196,
-    "VerificationProviderId": null,
-    "VerificationProviderTableId": null,
-    "AuditMessage": "Email captured",
-    "AuditData": "user@example.com"
-  },
-  {
-    "AuditLogId": 52,
-    "CreatedAt": "2025-12-28T21:13:12.621Z",
-    "VerificationId": 196,
-    "VerificationProviderId": null,
-    "VerificationProviderTableId": null,
-    "AuditMessage": "Phone captured",
-    "AuditData": "{\"PhoneNumber\":\"436803104850\",\"PhoneCountryCode\":\"AT\"}"
-  }
-]
+
 
 **Notes:**
 
