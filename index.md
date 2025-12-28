@@ -218,7 +218,65 @@ The following table shows all possible fields that may be returned in the userin
 | MarketingOptIn           | Boolean | Whether user opted in to marketing             |                                            |
 | AcceptedPrivacy          | Boolean | Whether user accepted privacy policy           |                                            |
 | AcceptedTerms            | Boolean | Whether user accepted terms                    |                                            |
+| AuditLog                 | Array   |   List of audit events                         | See below                                  |
+---
 
+## AuditLog
+
+The `AuditLog` field provides a chronological list of audit events recorded during the verification process.  
+It can be used to trace which user data was captured and when.
+
+### Format
+
+`AuditLog` is returned as a **JSON array** of audit log entries.
+
+Each entry represents a single event in the verification lifecycle.
+
+### AuditLog Entry Fields
+
+| Field                        | Type               | Description |
+|-----------------------------|--------------------|-------------|
+| AuditLogId                  | Integer            | Unique identifier of the audit log entry |
+| CreatedAt                   | Text               | UTC timestamp of the event (ISO 8601) |
+| VerificationId              | Integer            | Related verification identifier |
+| VerificationProviderId      | Integer \| Null    | Verification provider reference, if applicable |
+| VerificationProviderTableId | Integer \| Null    | Provider-specific table reference |
+| AuditMessage                | Text               | Human-readable description of the event |
+| AuditData                   | Text \| Null       | Event-specific data (see below) |
+
+### AuditData Field
+
+The `AuditData` field may contain:
+
+- A **plain string** (e.g. email address)
+- A **JSON-encoded string** containing structured data
+- `null` when no additional data is stored (e.g. password events)
+
+When `AuditData` contains JSON, clients must **parse the string as JSON**.
+
+### Example
+
+```json
+"AuditLog": [
+  {
+    "AuditLogId": 50,
+    "CreatedAt": "2025-12-28T21:13:06.452Z",
+    "VerificationId": 196,
+    "VerificationProviderId": null,
+    "VerificationProviderTableId": null,
+    "AuditMessage": "Email captured",
+    "AuditData": "user@example.com"
+  },
+  {
+    "AuditLogId": 52,
+    "CreatedAt": "2025-12-28T21:13:12.621Z",
+    "VerificationId": 196,
+    "VerificationProviderId": null,
+    "VerificationProviderTableId": null,
+    "AuditMessage": "Phone captured",
+    "AuditData": "{\"PhoneNumber\":\"436803104850\",\"PhoneCountryCode\":\"AT\"}"
+  }
+]
 
 **Notes:**
 
