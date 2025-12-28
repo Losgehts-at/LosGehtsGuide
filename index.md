@@ -278,8 +278,7 @@ When `AuditData` contains JSON, clients must **parse the string as JSON**.
     }
   ]
 }
-
-
+```
 
 **Notes:**
 
