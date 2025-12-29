@@ -42,7 +42,7 @@ GET /oauth/authorize
 | state      | Yes      | A unique string used to maintain state between the request and callback (e.g., session ID, affiliate tag, or encrypted UserID). Returned in the callback to help prevent CSRF attacks. |
 | scope      | Yes      | A comma-separated list of scopes defining the permissions being requested. Supported scopes include: `signup`, `kyc`, and `sof`. |
 | locale     | No       | A two-letter country/language code used for localization (e.g., `de`, `at`, `us`). Primarily determines the UI language. |
-| cc         | No       | Enforces a specific country context in a multi-country setup (e.g., `AT`). If not provided, the country will be auto-detected based on the user's geolocation. |
+| country         | No       | Enforces a specific country context in a multi-country setup (e.g., `AT`). If not provided, the country will be auto-detected based on the user's geolocation. |
 
 
 ### Example
@@ -165,10 +165,10 @@ The `verificationStatus` field can contain the following values:
 
 | Status ID | Status  | Description                                           |
 | --------- | ------- | ----------------------------------------------------- |
-| 0         | Pending | Verification process is still in progress             |
-| 1         | Full    | Complete verification has been successfully completed |
-| 2         | Passive | Passive verification has been completed               |
-| 3         | Failed  | Verification process has failed                       |
+| 1         | Pending | Verification process is still in progress             |
+| 2         | Full    | Complete verification has been successfully completed |
+| 3         | Passive | Passive verification has been completed               |
+| 4         | Failed  | Verification process has failed                       |
 
 ### Complete Response Fields Reference
 
