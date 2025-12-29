@@ -274,7 +274,7 @@ When `AuditData` contains JSON, clients must **parse the string as JSON**.
       "VerificationProviderId": null,
       "VerificationProviderTableId": null,
       "AuditMessage": "Phone captured",
-      "AuditData": "{\"PhoneNumber\":\"436803104850\",\"PhoneCountryCode\":\"AT\"}"
+      "AuditData": "{\"PhoneNumber\":\"436801114120\",\"PhoneCountryCode\":\"AT\"}"
     }
   ]
 }
