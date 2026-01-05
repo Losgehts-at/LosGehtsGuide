@@ -40,7 +40,7 @@ GET /oauth/authorize
 |------------|----------|-------------|
 | client_id  | Yes      | The unique client identifier of your application. |
 | state      | Yes      | A unique string used to maintain state between the request and callback (e.g., session ID, affiliate tag, or encrypted UserID). Returned in the callback to help prevent CSRF attacks. |
-| scope      | Yes      | A comma-separated list of scopes defining the permissions being requested. Supported scopes include: `signup`, `kyc`, and `sof`. |
+| scope      | Yes      | A space-separated list of scopes defining the permissions being requested.. Supported scopes include: `signup`, `kyc`, and `sof`. |
 | locale     | No       | A two-letter country/language code used for localization (e.g., `de`, `at`, `us`). Primarily determines the UI language. |
 | country         | No       | Enforces a specific country context in a multi-country setup (e.g., `AT`). If not provided, the country will be auto-detected based on the user's geolocation. |
 
@@ -135,50 +135,66 @@ Content-Type: application/json
 
 ```json
 {
-"VerificationId": 354,
-  "OAuthState": "55jhg8l1t53",
-  "OAuthScope": "signup email password phonenumber",
-  "Email": "demo@losgehts.at",
-  "EmailConfirmed": 1,
-  "VerificationStatusId": 2,
-  "Password": "a9f3c7e21b4d8f6a",
-  "FirstName": "John",
-  "FirstNameVerified": 1,
-  "LastName": "Doe",
-  "LastNameVerified": 1,
-  "DateOfBirth": "1990-12-31",
-  "DateOfBirthVerified": 1,
-  "Gender": null,
-  "GenderVerified": null,
-  "Nationality": null,
-  "NationalityVerified": null,
-  "ZipCode": "4020",
-  "ZipCodeVerified": 1,
-  "Town": "Linz",
-  "TownVerified": 1,
-  "Street": "Feldstraße",
-  "StreetVerified": 1,
-  "HouseNumber": "12",
-  "HouseNumberVerified": 1,
-  "Country": "AT",
-  "CountryVerified": 1,
-  "Region": "Oberösterreich",
-  "RegionCode": "4",
-  "PhoneNumber": "436604737087",
-  "PhoneNumberInternational": "436604737427",
-  "PhoneNumberNational": "0660 4737427",
-  "PhoneCountryCode": "AT",
-  "PhoneCountryPrefix": "43",
-  "PhoneNumberVerified": null,
-  "Iban": null,
-  "IbanVerified": null,
-  "Lang": "DE",
-  "Currency": "EUR",
-  "LimitAmount": null,
-  "DepositAmount": 10,
-  "MarketingOptIn": 1,
-  "AcceptedPrivacy": 1,
-  "AcceptedTerms": 1,
+  "Verification": {
+    "VerificationId": 354,
+    "OAuthState": "55jhg8l1t53",
+    "OAuthScope": "signup email phonenumber",
+
+    "Email": "demo@losgehts.at",
+    "EmailConfirmed": 1,
+    "VerificationStatusId": 2,
+
+    "FirstName": "John",
+    "FirstNameVerified": 1,
+    "LastName": "Doe",
+    "LastNameVerified": 1,
+
+    "DateOfBirth": "1990-12-31",
+    "DateOfBirthVerified": 1,
+
+    "Gender": null,
+    "GenderVerified": 0,
+
+    "Nationality": null,
+    "NationalityVerified": 0,
+
+    "Street": "Feldstraße",
+    "StreetVerified": 1,
+    "HouseNumber": "12",
+    "HouseNumberVerified": 1,
+
+    "ZipCode": "4020",
+    "ZipCodeVerified": 1,
+    "Town": "Linz",
+    "TownVerified": 1,
+
+    "Country": "AT",
+    "CountryVerified": 1,
+    "Region": "Oberösterreich",
+    "RegionCode": "4",
+
+    "PhoneNumber": "436604737427",
+    "PhoneNumberInternational": "436604737427",
+    "PhoneNumberNational": "0660 4737427",
+    "PhoneCountryCode": "AT",
+    "PhoneCountryPrefix": "43",
+    "PhoneNumberVerified": 0,
+    "PhoneNumberConfirmed": null,
+
+    "Iban": null,
+    "IbanVerified": 0,
+
+    "Lang": "DE",
+
+    "Currency": "EUR",
+    "LimitAmount": null,
+    "DepositAmount": 10,
+
+    "MarketingOptIn": 1,
+    "AcceptedPrivacy": 1,
+    "AcceptedTerms": 1
+  },
+  "AuditLog": []
 }
 ```
 
@@ -195,7 +211,7 @@ The `verificationStatus` field can contain the following values:
 
 ### Complete Response Fields Reference
 
-The following table shows all possible fields that may be returned in the userinfo response:
+All fields listed below are returned inside Verification. All verification fields must be accessed via `response.Verification`
 
 |           Field          |   Type  |                   Description                  |                   Format                   |
 |:------------------------:|:-------:|:----------------------------------------------:|:------------------------------------------:|
@@ -226,15 +242,15 @@ The following table shows all possible fields that may be returned in the userin
 | HouseNumberVerified      | Boolean | Whether house number has been verified         |                                            |
 | Country                  | Text    | User's country                                 | ISO 3166-1 alpha-2 (two uppercase letters) |
 | CountryVerified          | Boolean | Whether country has been verified              |                                            |
-| Region                   | Text    | User's Region                                  | ISO 3166-1 alpha-2 (two uppercase letters) |
-| RegionCode               | Text    | User's Region                                  | ISO 3166-1 alpha-2 (two uppercase letters) |
+| Region                   | Text    | User's Region Name                             |                                            |
+| RegionCode               | Text    | User's Region                                  | Region code (country-specific)             |
 | Iban                     | Text    | User's IBAN                                    |                                            |
 | IbanVerified             | Boolean | Whether IBAN has been verified                 |                                            |
 | PhoneNumber              | Text    | User's phone number                            | E.164 standard (436803104850)              |
 | PhoneNumberConfirmed     | Boolean | Whether phone number has been confirmed        |                                            |
 | PhoneNumberInternational | Text    | User's international phone number              | E.164 standard (436803104850)              |
 | PhoneNumberNational      | Text    | User's national phone number                   | e.g. (0680 3104850)                        |
-| PhoneCountryCode         | Text    | Phone country code                             | ISO 3166-1 alpha-2 (two uppercase letters  |
+| PhoneCountryCode         | Text    | Country calling prefix                         | ISO 3166-1 alpha-2 (two uppercase letters) |
 | PhoneCountryPrefix       | Text    | Phone country prefix                           | Without "+" e.g. "43"                      |
 | PhoneNumberVerified      | Boolean | Whether phone number has been verified         |                                            |
 | Lang                     | Text    | User's language preference                     | ISO 3166-1 alpha-2 (two uppercase letters) |
@@ -244,7 +260,6 @@ The following table shows all possible fields that may be returned in the userin
 | MarketingOptIn           | Boolean | Whether user opted in to marketing             |                                            |
 | AcceptedPrivacy          | Boolean | Whether user accepted privacy policy           |                                            |
 | AcceptedTerms            | Boolean | Whether user accepted terms                    |                                            |
-| AuditLog                 | Array   |   List of audit events                         | See below                                  |
 
 ## AuditLog
 
