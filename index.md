@@ -36,13 +36,14 @@ GET /oauth/authorize
 
 ### Query Parameters
 
-| Parameter  | Required | Description |
+| Parameter   | Required | Description |
 |------------|----------|-------------|
-| client_id  | Yes      | The unique client identifier of your application. |
-| state      | Yes      | A unique string used to maintain state between the request and callback (e.g., session ID, affiliate tag, or encrypted UserID). Returned in the callback to help prevent CSRF attacks. |
-| scope      | Yes      | A space-separated list of scopes defining the permissions being requested.. Supported scopes include: `signup`, `kyc`, `sof` and `business`. |
-| locale     | No       | A two-letter country/language code used for localization (e.g., `de`, `at`, `us`). Primarily determines the UI language. |
-| country         | No       | Enforces a specific country context in a multi-country setup (e.g., `AT`). If not provided, the country will be auto-detected based on the user's geolocation. |
+| `client_id` | Yes | The unique client identifier of your application. |
+| `state`     | Yes | A unique string used to maintain state between the request and callback (e.g., session ID, affiliate tag, or encrypted UserID). Returned in the callback to help prevent CSRF attacks. |
+| `scope`     | Yes | A space-separated list of scopes defining the product flows or permissions your application is requesting. Each scope corresponds to a specific feature or user flow:<br>- `signup` → Onboarding Flow (standard user onboarding)<br>- `kyc` → KYC Flow (identity verification)<br>- `sof` → Affordability Flow (financial eligibility check)<br>- `business` → Business Onboarding Flow (business account onboarding)<br>Multiple scopes can be combined by separating them with spaces (e.g., `scope=signup kyc`). |
+| `locale`    | No  | Two-letter country/language code (e.g., `de`, `at`, `us`) used to localize the user interface. |
+| `country`   | No  | Forces a specific country context in multi-country setups (e.g., `AT`). If not provided, the country is auto-detected based on user geolocation. |
+
 
 
 ### Example
