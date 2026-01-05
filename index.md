@@ -40,7 +40,7 @@ GET /oauth/authorize
 |------------|----------|-------------|
 | client_id  | Yes      | The unique client identifier of your application. |
 | state      | Yes      | A unique string used to maintain state between the request and callback (e.g., session ID, affiliate tag, or encrypted UserID). Returned in the callback to help prevent CSRF attacks. |
-| scope      | Yes      | A space-separated list of scopes defining the permissions being requested.. Supported scopes include: `signup`, `kyc`, and `sof`. |
+| scope      | Yes      | A space-separated list of scopes defining the permissions being requested.. Supported scopes include: `signup`, `kyc`, `sof` and `business`. |
 | locale     | No       | A two-letter country/language code used for localization (e.g., `de`, `at`, `us`). Primarily determines the UI language. |
 | country         | No       | Enforces a specific country context in a multi-country setup (e.g., `AT`). If not provided, the country will be auto-detected based on the user's geolocation. |
 
