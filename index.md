@@ -207,6 +207,7 @@ The following table shows all possible fields that may be returned in the userin
 | Iban                     | Text    | User's IBAN                                    |                                            |
 | IbanVerified             | Boolean | Whether IBAN has been verified                 |                                            |
 | PhoneNumber              | Text    | User's phone number                            | E.164 standard (436803104850)              |
+| PhoneNumberConfirmed     | Boolean | Whether phone number has been confirmed        |                                            |
 | PhoneNumberInternational | Text    | User's international phone number              | E.164 standard (436803104850)              |
 | PhoneNumberNational      | Text    | User's national phone number                   | e.g. (0680 3104850)                        |
 | PhoneCountryCode         | Text    | Phone country code                             | ISO 3166-1 alpha-2 (two uppercase letters  |
