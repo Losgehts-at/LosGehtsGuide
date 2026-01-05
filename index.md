@@ -143,7 +143,6 @@ Content-Type: application/json
     "Email": "demo@losgehts.at",
     "EmailConfirmed": 1,
     "VerificationStatusId": 2,
-
     "FirstName": "John",
     "FirstNameVerified": 1,
     "LastName": "Doe",
