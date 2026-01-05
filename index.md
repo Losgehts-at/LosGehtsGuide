@@ -139,7 +139,7 @@ Content-Type: application/json
     "VerificationId": 354,
     "OAuthState": "55jhg8l1t53",
     "OAuthScope": "signup email phonenumber",
-
+    "Password": "asdsad2132132",
     "Email": "demo@losgehts.at",
     "EmailConfirmed": 1,
     "VerificationStatusId": 2,
@@ -148,31 +148,24 @@ Content-Type: application/json
     "FirstNameVerified": 1,
     "LastName": "Doe",
     "LastNameVerified": 1,
-
     "DateOfBirth": "1990-12-31",
     "DateOfBirthVerified": 1,
-
     "Gender": null,
     "GenderVerified": 0,
-
     "Nationality": null,
     "NationalityVerified": 0,
-
     "Street": "Feldstraße",
     "StreetVerified": 1,
     "HouseNumber": "12",
     "HouseNumberVerified": 1,
-
     "ZipCode": "4020",
     "ZipCodeVerified": 1,
     "Town": "Linz",
     "TownVerified": 1,
-
     "Country": "AT",
     "CountryVerified": 1,
     "Region": "Oberösterreich",
     "RegionCode": "4",
-
     "PhoneNumber": "436604737427",
     "PhoneNumberInternational": "436604737427",
     "PhoneNumberNational": "0660 4737427",
@@ -180,16 +173,12 @@ Content-Type: application/json
     "PhoneCountryPrefix": "43",
     "PhoneNumberVerified": 0,
     "PhoneNumberConfirmed": null,
-
     "Iban": null,
     "IbanVerified": 0,
-
     "Lang": "DE",
-
     "Currency": "EUR",
     "LimitAmount": null,
     "DepositAmount": 10,
-
     "MarketingOptIn": 1,
     "AcceptedPrivacy": 1,
     "AcceptedTerms": 1
