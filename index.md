@@ -199,6 +199,8 @@ The following table shows all possible fields that may be returned in the userin
 | TownVerified             | Boolean | Whether town has been verified                 |                                            |
 | Street                   | Text    | User's street name                             |                                            |
 | StreetVerified           | Boolean | Whether street has been verified               |                                            |
+| HouseNumber              | Text    | User's house number                            |                                            |
+| HouseNumberVerified      | Boolean | Whether house number has been verified         |                                            |
 | Country                  | Text    | User's country                                 | ISO 3166-1 alpha-2 (two uppercase letters) |
 | CountryVerified          | Boolean | Whether country has been verified              |                                            |
 | Region                   | Text    | User's Region                                  | ISO 3166-1 alpha-2 (two uppercase letters) |
