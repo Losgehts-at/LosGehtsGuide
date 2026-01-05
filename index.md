@@ -58,6 +58,16 @@ https://dev.losgehts.at/oauth/authorize?client_id=40&state=abc123&scope=signup&l
 ```
 https://ident.losgehts.at/oauth/authorize?client_id=40&state=abc123&scope=signup&locale=de
 ```
+### Try It Out: OAuth Generator
+
+Want to generate authorization URLs without writing any code? Use our **interactive OAuth Generator**:
+
+- Enter your **Client ID**, **Client Secret**, preferred **Language**, **Market**, and **Scope**.
+- Click **Generate URL** to see the exact `/oauth/authorize` URL.
+- Click **Continue to Authorization** to go through the OAuth flow and view the response in real-time.
+- Inspect the returned **access token** and **user information** safely in the sandbox.
+
+[Open OAuth Demo →](https://demo.losgehts.at/)
 
 **Security Note:** Always validate the `state` parameter in the callback.
 
