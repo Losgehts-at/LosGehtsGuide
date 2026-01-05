@@ -215,7 +215,7 @@ All fields listed below are returned inside Verification. All verification field
 |:------------------------:|:-------:|:----------------------------------------------:|:------------------------------------------:|
 | VerificationId           | Integer | Primary identifier for the verification record |                                            |
 | OAuthState               | Text    | OAuth state for authentication                 |                                            |
-| OAuthScope               | Text    | OAuth scopes granted                           |                                            |
+| OAuthScope               | Text    | OAuth scopes granted                           | Scopes added automatically per config      |
 | Email                    | Text    | User's email address                           |                                            |
 | EmailConfirmed           | Boolean | Whether email has been confirmed               |                                            |
 | VerificationStatusId     | Integer | Status of the verification process             |                                            |
