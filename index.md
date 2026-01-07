@@ -85,6 +85,11 @@ After authorization, the user is redirected to your callback URL with:
 https://yourapp.com/callback?code=AUTH_CODE&state=abc123
 ```
 
+> **Important:**  
+> In addition to user-driven redirects, our system may also invoke this callback endpoint **server-to-server**, without redirecting the user, in order to notify the client’s system of authorization events.  
+>  
+> This request will be sent as an HTTP **GET** request, and your endpoint must respond with **HTTP 200 OK** to confirm successful receipt.
+
 ## 4. Token Exchange
 
 Exchange the authorization code for an access token.
