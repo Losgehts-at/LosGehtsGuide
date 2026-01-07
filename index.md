@@ -187,7 +187,7 @@ Content-Type: application/json
     "PhoneCountryCode": "AT",
     "PhoneCountryPrefix": "43",
     "PhoneNumberVerified": 0,
-    "PhoneNumberConfirmed": null,
+    "PhoneNumberConfirmed": 0,
     "Iban": null,
     "IbanVerified": 0,
     "Lang": "DE",
@@ -250,7 +250,7 @@ All fields listed below are returned inside Verification. All verification field
 | RegionCode               | Text    | User's Region                                  | Region code (country-specific)             |
 | Iban                     | Text    | User's IBAN                                    |                                            |
 | IbanVerified             | Boolean | Whether IBAN has been verified                 |                                            |
-| PhoneNumber              | Text    | User's phone number                            | E.164 standard (436803104850)              |
+| PhoneNumber              | Text    | User's phone number                            |                                            |
 | PhoneNumberConfirmed     | Boolean | Whether phone number has been confirmed        |                                            |
 | PhoneNumberInternational | Text    | User's international phone number              | E.164 standard (436803104850)              |
 | PhoneNumberNational      | Text    | User's national phone number                   | e.g. (0680 3104850)                        |
@@ -282,9 +282,6 @@ Each entry represents a single event in the verification lifecycle.
 |-----------------------------|--------------------|-------------|
 | AuditLogId                  | Integer            | Unique identifier of the audit log entry |
 | CreatedAt                   | Text               | UTC timestamp of the event (ISO 8601) |
-| VerificationId              | Integer            | Related verification identifier |
-| VerificationProviderId      | Integer \| Null    | Verification provider reference, if applicable |
-| VerificationProviderTableId | Integer \| Null    | Provider-specific table reference |
 | AuditMessage                | Text               | Human-readable description of the event |
 | AuditData                   | Text \| Null       | Event-specific data (see below) |
 
@@ -306,18 +303,12 @@ When `AuditData` contains JSON, clients must **parse the string as JSON**.
     {
       "AuditLogId": 50,
       "CreatedAt": "2025-12-28T21:13:06.452Z",
-      "VerificationId": 196,
-      "VerificationProviderId": null,
-      "VerificationProviderTableId": null,
       "AuditMessage": "Email captured",
       "AuditData": "user@example.com"
     },
     {
       "AuditLogId": 52,
       "CreatedAt": "2025-12-28T21:13:12.621Z",
-      "VerificationId": 196,
-      "VerificationProviderId": null,
-      "VerificationProviderTableId": null,
       "AuditMessage": "Phone captured",
       "AuditData": "{\"PhoneNumber\":\"436801114120\",\"PhoneCountryCode\":\"AT\"}"
     }
